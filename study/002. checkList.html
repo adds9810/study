@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>002. checkList</title>
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <style>
+        #wrap{padding:10px;margin:0 auto; max-width:300px;text-align:center;}
+        #wrap h1{margin:20px auto;font-size:20px;}
+        .inputBox{width:100%;background:#eee;}
+        .checkList{margin-top:30px;text-align:left;width:100%;}
+        .checkList li{display:block;width:100%;clear:both;overflow:hidden;}
+        .checkList li a{float:right;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>checkList</h1>
+        <div class="inputBox">
+            <input type="text" name="listCont" id="listCont">
+            <button id="btn">추가</button>
+        </div>
+        <div class="checkCon"></div>
+    </div>
+    <script>
+        var checkList = new Array();
+        var add = document.querySelector('#btn');
+        add.addEventListener('click',addList);
+
+        function addList(){
+            var listCont = document.querySelector('#listCont').value;
+            if(listCont != ''){
+                checkList.push(listCont);
+                listUp();
+            }else{
+                alert('항목을 입력해주세요');
+                document.querySelector('#listCont').focus();
+            }
+        }
+        function listUp(){
+            var list = '<ul class="checkList">';
+            for(i=0;i<checkList.length;i++){
+                list+= '<li>'+checkList[i]+'<a href="javascript:void(0);" data-num='+i+' id="remove">삭제하기</a></li>';
+            }
+            list +='</ul>';
+
+            document.querySelector('.checkCon').innerHTML = list;
+            
+            var remove = document.querySelector('#remove');
+            remove.addEventListener('click',removeList);
+        }
+        function removeList(){
+            var removeCon = this.dataset.num;
+            checkList.splice(removeCon,1);
+            listUp();
+        }
+    </script>
+</body>
+</html>

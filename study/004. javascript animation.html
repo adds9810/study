@@ -53,8 +53,13 @@
             }, 1000);
         }
         function ex2(){
-            setInterval(() =>{
-                
+            var playAni = setInterval(() =>{
+                i++;
+				document.querySelector('#play2 p').innerText = i + '초가 지났습니다,';
+				document.querySelector('#play2 p').innerText = i + '초가 지났습니다.';
+				if(i<9){
+					clearInterval(playAni);
+				}
             }, 1000);
         }
         /*

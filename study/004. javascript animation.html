@@ -12,6 +12,8 @@
         .exbox p{margin-top:10px;}
         .paly{padding:10px;margin-top:10px;border:1px solid #000;}
         .paly div{display:block;width:50px;height:50px;background:gray;}
+
+        [id*='move']{transition:all 0.2s ease-in-out;}
     </style>
 </head>
 <body>
@@ -19,15 +21,18 @@
         <div class="box">
             <h1>jquery 없이 만드는 animation</h1>
             <div class="exbox" id="play1">
-                <button type="button" onclick="ex1()" class="btn1">setTimeOut()</button>
+                <button type="button" class="btn1">setTimeOut()</button>
                 <p>클릭 후 1초 후에 시작</p>
                 <div class="paly">
-                    <div></div>
+                    <div id="move1"></div>
                 </div>
             </div>
-            <div class="exbox">
-                <button type="button" onclick="ex2()" class="btn2">setInterval()</button>
+            <div class="exbox" id="play2">
+                <button type="button" class="btn2">setInterval()</button>
                 <p>클릭 후 1초 간격으로 10초 동안 진행</p>
+                <div class="paly">
+                    <div id="move2"></div>
+                </div>
             </div>
             <div class="exbox" id="play3">
                 <button type="button" class="btn3">requestAnimationFrame()</button>
@@ -39,7 +44,20 @@
         </div>
     </div>
     <script>
+        /*
+            * 순수 자바스크립트로 애니메이션 만들기
+              - 필요한 메서드
+                setTimeOut() : 지정한 시간 뒤에 한번만 실행, 재귀함수를 사용해 반복되도록 해야함
+                setInterval() : 지정한 시간 간격으로 실행
+                requestAnimationFrame() :setTimeOut()와 setInterval()를 대체하는 함수. html5와 함께 생겨남
+                브라우저에서 실행하고자 하는 애니메이션을 진행하게 해주는 메서드(먼 소리지.. 나중에 다시 정리하자..)
+                animate(keyframes, options) : Animation API, IE에서는 지원이 안됨
+        */
+
+        // setTimeOut(); 를 이용한 애니메이트
         var i = 1;
+        var btn1 = document.querySelector('.btn1');
+        btn1.addEventListener('click', ex1);
         function ex1(){
             setTimeout(() => {
                 if(i>9){
@@ -47,29 +65,36 @@
                     return;
                 };
                 document.querySelector('#play1 p').innerText = i + '초가 지났습니다.';
-                document.querySelector('#play1 .play div').style.margin = i + '0px';
+                document.querySelector('#move1').style.marginLeft = i + '0px';
                 i++;
                 ex1();
-            }, 1000);
+            }, 200);
         }
+        
+        // setInterval(); 를 이용한 애니메이트
+        var n = 1;
+        var btn2 = document.querySelector('.btn2');
+        btn2.addEventListener('click', ex2);
         function ex2(){
             var playAni = setInterval(() =>{
-                i++;
-				document.querySelector('#play2 p').innerText = i + '초가 지났습니다,';
-				document.querySelector('#play2 p').innerText = i + '초가 지났습니다.';
-				if(i<9){
-					clearInterval(playAni);
+				if(n>9){
+                    document.querySelector('#play2 p').innerText = n + '초가 지났습니다. 반복을 정지합니다.'; 
+                    clearInterval(playAni);
+                    return;
 				}
-            }, 1000);
+                n++;
+				document.querySelector('#play2 p').innerText = n + '초가 지났습니다,';
+                document.querySelector('#move2').style.marginLeft = n + '0px';
+            }, 200);
         }
-        /*
-            * 순수 자바스크립트로 애니메이션 만들기
-              - 필요한 메서드
-                setTimeOut() : 지정한 시간 뒤에 한번만 실행, 재귀함수를 사용해 반복되도록 해야함
-                setInterval() : 지정한 시간 간격으로 실행
-                requestAnimationFrame() : 브라우저에서 실행하고자 하는 애니메이션을 진행하게 해주는 메서드(먼 소리지.. 나중에 다시 정리하자..)
-                animate(keyframes, options) : Animation API, IE에서는 지원이 안됨
-        */
+
+        // requestAnimationFrame(); 를 이용한 에니메이트
+        var m = 1;
+        var btn3 = document.querySelector('.btn3');
+        btn3.addEventListener('click', ex3);
+        function ex3(){
+            //var requestAnimationDrame();
+        }
     </script>
 </body>
 </html>

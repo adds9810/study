@@ -99,6 +99,8 @@ select {
   text-align:right;
 }
 
+table{ border-collapse: collapse; }
+
 /* IE 10, 11의 네이티브 화살표 숨기기 */
 select::-ms-expand {
     display: none;

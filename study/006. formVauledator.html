@@ -12,7 +12,8 @@
         .joinForm thead{background:#eee; text-align:center;}
         .joinForm tr{border:1px solid #000;border-top:0 none;}
         .joinForm td{padding:10px;vertical-align:middle;}
-        .joinForm input[type="text"], .joinForm input[type="password"]{border:1px solid #000;}
+        .joinForm td:nth-child(1){width:25%;}
+        .joinForm input[type="text"], .joinForm input[type="password"], .joinForm input[type="email"], .joinForm input[type="tel"]{border:1px solid #000;}
         .joinForm input[type="radio"], .joinForm input[type="checkbox"]{display:inline-block; -webkit-appearance:  auto;  -moz-appearance:  auto; appearance: auto; }
         .joinForm input[type="radio"] + label, .joinForm input[type="checkbox"] + label{margin-right:10px;}
         .joinForm input[type="radio"] + label + input[type="text"], .joinForm input[type="checkbox"] + label + input[type="text"]{width:100px;}
@@ -38,24 +39,30 @@
                     </tr>
                     <tr>
                         <td><label for="userId" required>아이디*</label></td>
-                        <td><input type="text" name="userId" id="userId" maxlength="15"></td>
+                        <td><input type="text" name="userId" id="userId" maxlength="15" placeholder="영문 대소문자 구분 4~15차 이내"></td>
                     </tr>
                     <tr>
                         <td><label for="userPw" required>비밀번호*</label></td>
-                        <td><input type="password" name="userPw" id="userPw"></td>
+                        <td><input type="password" name="userPw" id="userPw" placeholder="영문 대소문자 구분 4~15차 이내"></td>
                     </tr>
                     <tr>
                         <td><label for="userPw2" required>비밀번호 확인*</label></td>
-                        <td><input type="password" name="userPw2" id="userPw2"></td>
+                        <td><input type="password" name="userPw2" id="userPw2" placeholder="영문 대소문자 구분 4~15차 이내"></td>
                     </tr>
                     <tr>
                         <td><label for="userTel" required>전화번호</label></td>
-                        <td><input type="tel" name="userTel" id="userTel">
+                        <td>
+                            <input type="tel" name="userTel" id="userTel"  placeholder="- 제외하고 입력">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="userEmail" required>이메일</label></td>
-                        <td><input type="email" name="userEmail" id="userEmail"></td>
+                        <td>
+                            <input type="email" name="userEmail" id="userEmail">
+                            <select name="" id="">
+                                <option value=""></option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="userBYear">생년월일</label></td>
@@ -74,9 +81,9 @@
                     <tr>
                         <td><label for="userAddress">주소</label></td>
                         <td>
-                            <input type="text" name="userAddress" id="userAddress"><button>우편번호 찾기</button>
+                            <input type="text" name="userAddress" id="userAddress"><button type="button" id="btnPostCode">우편번호 찾기</button>
                             <input type="text" name="userAddress" id="userAddress2">
-                            <input type="text" name="userAddress" id="userAddress3">
+                            <input type="text" name="userAddress" id="userAddress3" placeholder="상세주소">
                         </td>
                     </tr>
                     <tr>
@@ -107,13 +114,21 @@
             </table>
         </form>
     </div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 우편번호 가이드 http://postcode.map.daum.net/guide -->
     <script>
+        document.addEventListener('load',baseSeting);
         document.getElementById('userPw2').addEventListener('change',checkedPw);
+        document.getElementById('btnPostCode').addEventListener('click', openPostCode);
         document.getElementById('bthJoin').addEventListener('click',joinComplete);
 
+        // 생년월일 연도 삽입
+        function baseSeting(){
+            let yesr = document.querySelector('#userBYear');
+        }
+
         function checkedPw(){
-            var uPw = document.getElementById('userPw');
-            var uPw2 = document.getElementById('userPw2');
+            let uPw = document.getElementById('userPw');
+            let uPw2 = document.getElementById('userPw2');
             if(uPw.value != uPw2.value){
                 alert('비밀번호가 일치하지 않습니다.');
                 uPw2.focus();
@@ -121,12 +136,43 @@
             }
         }
         
+        function openPostCode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraRoadAddr !== ''){
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('userAddress').value = data.zonecode;
+                    document.getElementById("userAddress2").value = roadAddr;
+                }
+            }).open()
+        }
+
         function joinComplete(){
-            var uName = document.getElementById('userName');
-            var uId = document.getElementById('userId');
-            var uPw = document.getElementById('userPw');
-            var uPw2 = document.getElementById('userPw2');
-            var regId = /^[A-za-z0-9]{1,15}/g;
+            let uName = document.getElementById('userName');
+            let uId = document.getElementById('userId');
+            let uPw = document.getElementById('userPw');
+            let uPw2 = document.getElementById('userPw2');
+            let regId = /^[A-za-z0-9]{1,15}/g;
 
             if(uName.value == ''){
                 alert('이름을 입력해주세요');

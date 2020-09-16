@@ -68,13 +68,13 @@
                         <td><label for="userBYear">생년월일</label></td>
                         <td>
                             <select name="userBirth" id="userBYear">
-                                <option value=""></option>
+                                <option value="">년</option>
                             </select>년 
                             <select name="userBirth" id="userBMonth">
-                                <option value=""></option>
+                                <option value="">월</option>
                             </select>월 
                             <select name="userBirth" id="userBDay">
-                                <option value=""></option>
+                                <option value="">일</option>
                             </select>일 
                         </td>
                     </tr>
@@ -116,15 +116,33 @@
     </div>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 우편번호 가이드 http://postcode.map.daum.net/guide -->
     <script>
-        document.addEventListener('load',baseSeting);
         document.getElementById('userPw2').addEventListener('change',checkedPw);
         document.getElementById('btnPostCode').addEventListener('click', openPostCode);
         document.getElementById('bthJoin').addEventListener('click',joinComplete);
 
         // 생년월일 연도 삽입
-        function baseSeting(){
-            let yesr = document.querySelector('#userBYear');
+        let yesr = document.querySelector('#userBYear');
+        let month = document.querySelector('#userBMonth');
+        let day = document.querySelector('#userBDay');
+        let addOpt;
+
+        // 년
+        for(var i=1950;i<=2020;i++){
+            addOpt = document.createElement('option');
+            addOpt.text=i;
+            addOpt.value = i;
+            yesr.add(addOpt);
+        };
+
+        // 월
+        for(var i=1;i<=12;i++){
+            addOpt = document.createElement('option');
+            addOpt.text=i;
+            addOpt.value = i;
+            month.add(addOpt);
         }
+
+        // 일
 
         function checkedPw(){
             let uPw = document.getElementById('userPw');

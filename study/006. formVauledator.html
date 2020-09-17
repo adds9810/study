@@ -60,7 +60,7 @@
                         <td>
                             <input type="email" name="userEmail" id="userEmail">
                             <select name="" id="">
-                                <option value="">rrrrr</option>
+                                <option value=""></option>
                             </select>
                         </td>
                     </tr>
@@ -148,6 +148,15 @@
         }
 
         // 일
+
+        // 이메일
+        let emailAddr = ['hamail.net','naver.com','gmail.com'];
+        function addEmail(){
+            for(var i = 0; i <= emailAddr.length; i++ ){
+                alert(i);
+            }
+
+        }
 
         function checkedPw(){
             let uPw = document.getElementById('userPw');

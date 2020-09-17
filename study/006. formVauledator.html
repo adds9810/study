@@ -52,7 +52,7 @@
                     <tr>
                         <td><label for="userTel" required>전화번호</label></td>
                         <td>
-                            <input type="tel" name="userTel" id="userTel"  placeholder="- 제외하고 입력">
+                            <input type="tel" name="userTel" id="userTel"  placeholder="- 제외">
                         </td>
                     </tr>
                     <tr>
@@ -117,6 +117,7 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 우편번호 가이드 http://postcode.map.daum.net/guide -->
     <script>
         document.getElementById('userPw2').addEventListener('change',checkedPw);
+        document.getElementById('userTel').addEventListener('keyup',checkedTel);
         document.getElementById('btnPostCode').addEventListener('click', openPostCode);
         document.getElementById('bthJoin').addEventListener('click',joinComplete);
 
@@ -155,6 +156,15 @@
                 alert('비밀번호가 일치하지 않습니다.');
                 uPw2.focus();
                 return;
+            }
+        }
+
+        function checkedTel(){
+            var telNum = document.querySelector('#userTel'),
+            regExp = /^[0-9]+$/,
+            changeTxt = /[a-zㄱ-항]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"\\]/g;
+            if(!regExp.test(telNum.val())){
+                telNum.val( telNum.val().replace(changeTxt,"") );
             }
         }
         

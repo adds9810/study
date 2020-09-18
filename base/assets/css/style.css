@@ -1,0 +1,9 @@
+@charset "utf-8";
+           
+/* common */
+*{word-break: keep-all;}
+img{width:100%;}
+
+/* 미디어 쿼리 */
+@media all and (min-width:718px) {
+}

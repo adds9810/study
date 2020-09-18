@@ -151,11 +151,8 @@
 
         // 이메일
         let emailAddr = ['hamail.net','naver.com','gmail.com'];
-        function addEmail(){
-            for(var i = 0; i <= emailAddr.length; i++ ){
-                alert(i);
-            }
-
+        for(var i = 0; i <= emailAddr.length; i++ ){
+            alert(i);
         }
 
         function checkedPw(){
@@ -237,7 +234,12 @@
                 return;
             }
             if(uPw2.value == ''){
-                alert('패드워드를 확인해 주세요');
+                alert('패스워드를 확인해 주세요');
+                uPw2.focus();
+                return;
+            }
+            if(uPw.value != uPw2.value){
+                alert('패스워드를 다시 확인해 주세요.');
                 uPw2.focus();
                 return;
             }

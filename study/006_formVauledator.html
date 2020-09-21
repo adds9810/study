@@ -120,6 +120,7 @@
         document.getElementById('userTel').addEventListener('keyup',checkedTel);
         document.getElementById('btnPostCode').addEventListener('click', openPostCode);
         document.getElementById('bthJoin').addEventListener('click',joinComplete);
+        document.getElementById('userTel').addEventListener('focusout',telFull);
 
         // 생년월일 연도 삽입
         /*
@@ -152,7 +153,7 @@
         // 이메일
         let emailAddr = ['hamail.net','naver.com','gmail.com'];
         for(var i = 0; i <= emailAddr.length; i++ ){
-            alert(i);
+            //alert(i);
         }
 
         function checkedPw(){
@@ -166,12 +167,15 @@
         }
 
         function checkedTel(){
-            var telNum = document.querySelector('#userTel'),
+            var telNum = document.getElementById('userTel').value,
             regExp = /^[0-9]+$/,
-            changeTxt = /[a-zㄱ-항]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"\\]/g;
-            if(!regExp.test(telNum.val())){
-                telNum.val( telNum.val().replace(changeTxt,"") );
+            changeTxt = /[a-zㄱ-항]|[ \[\]{}()<>?|`~!@#$%^&*_+=,.;:\"\\]/g;
+            if(!regExp.test(telNum)){
+                telNum = telNum.replace(changeTxt,"") ;
             }
+        }
+        function telFull(){
+
         }
         
         function openPostCode() {

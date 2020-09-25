@@ -30,21 +30,27 @@
         function createList (a){
             const rot = document.getElementById('list');
             const list = document.createElement('ul');
-            rot.appendChild(list)
+            rot.appendChild(list);
 
             a.map(i => {
                 let li = document.createElement('li');
-                let t = document.createTextNode(`My fav is ${i.title} and price is ${i.price}`)
-                li.appendChild(t)
-                list.appendChild(li)
-            })
+                let t = document.createTextNode(`My fav is ${i.title} and price is ${i.price}`);
+                li.appendChild(t);
+                list.appendChild(li);
+            });
         }
 
         createList(ar);
-        /*
-            시간될때 읽어보쟈 https://www.w3schools.com/js/js_const.asp
-            const
-            let 
+        /* 
+            * 알아야 할 것 
+             - es5
+              - const, let, array.map()
+             - es6
+              - arrow Function(){} -> ()=>{}
+
+            * 참고 
+             - https://joshua1988.github.io/es6-online-book/const-let.html#let
+             - https://www.w3schools.com/js/js_es5.asp
         */
     </script>
 </body>

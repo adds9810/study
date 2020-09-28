@@ -11,6 +11,7 @@
         p{font-size:20px;}
         .box_con{display:block;width:100px;line-height:30px;text-align:center;border:2px solid #000;}
         .box_goal{display:block;line-height:30px;border:2px solid #000;}
+        .btn{display:block;margin-top:30px;line-height:40px;background:skyblue;color:#fff;}
     </style>
 </head>
 <body>
@@ -24,13 +25,10 @@
             <div class="box_con"draggable="true">4</div>
             <div class="box_goal">goal</div>
         </div>
+        <a href="#!" class="btn">next</a>   
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        $(function(){
-            $('.box_goal').on('drop',drop(event)).on('dragover',allowDrop(event));
-            $('.box_con').on('dragstart',drag(event));
-        });
         function allowDrop(ev) {
             ev.preventDefault();
         }
@@ -44,6 +42,10 @@
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
         }
+        $(function(){
+            $('.box_goal').on('drop',drop(event)).on('dragover',allowDrop(event));
+            $('.box_con').on('dragstart',drag(event));
+        });
     </script>
 </body>
 </html>

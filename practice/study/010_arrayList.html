@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>010_arrayList</title>
+    <style>
+        #wrap{margin:0 auto;width:100%;max-width:500px;text-align:center;}
+        h1{padding:50px;font-size:30px;}
+        p{font-size:20px;}
+        ul{margin-top:50px;}
+        li{font-size:15px;line-height:1.5;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>arrayList</h1>
+        <p>json으로 값을 넣고 그 값을 list만들어보쟈</p>
+        <ul id="list"></ul>  
+    </div>
+    <!--<script src=""></script>-->
+    <script>
+        var ar = new Array(
+                    {title: "제목1", price: 57},
+                    {title: "제목2", price: 25},
+                    {title: "제목3", price: 225}
+                )
+
+        function createList (a){
+            const rot = document.getElementById('list');
+            const list = document.createElement('ul');
+            rot.appendChild(list);
+
+            a.map(i => {
+                let li = document.createElement('li');
+                let t = document.createTextNode(`My fav is ${i.title} and price is ${i.price}`);
+                li.appendChild(t);
+                list.appendChild(li);
+            });
+        }
+
+        createList(ar);
+        /* 
+            * 알아야 할 것 
+             - es5
+              - const, let, array.map()
+             - es6
+              - arrow Function(){} -> ()=>{}
+
+            * 참고 
+             - https://joshua1988.github.io/es6-online-book/const-let.html#let
+             - https://www.w3schools.com/js/js_es5.asp
+        */
+    </script>
+</body>
+</html>

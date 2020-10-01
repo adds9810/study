@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>012_parallax</title>
+    <style>
+        #wrap{}
+        .content{perspective: 1px; perspective-origin: center; overflow-y: auto; overflow-x: hidden; margin-top: 0; height: 100vh;}
+        .box{display:table;width:100%;height:100vh; position: relative; transform-style: preserve-3d;}
+        .box:nth-child(1){background:sienna;}
+        .box:nth-child(2){background:silver;}
+        .box:nth-child(3){background:skyblue;}
+        .box:nth-child(4){background:slateblue;}
+        .container{display:table-cell;vertical-align:middle; position: absolute; width: 100%; overflow: hidden;}
+        .inner{display:block;margin:0 auto;width:100%;max-width:1280px;}
+        p{font-size:200px;text-align:center;}
+    </style>
+    <!--<script src=""></script>-->
+</head>
+<body>
+    <div id="wrap">
+        <div class="content">
+            <div class="box" id="content1">
+                <div class="container">
+                    <div class="inner"><p>12</p></div>
+                </div>
+            </div>
+            <div class="box" id="content2">
+                <div class="container">
+                    <div class="inner"><p>2</p></div>
+                </div>
+            </div>
+            <div class="box" id="content3">
+                <div class="container">
+                    <div class="inner"><p>3</p></div>
+                </div>
+            </div>
+            <div class="box" id="content4">
+                <div class="container">
+                    <div class="inner"><p>4</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).on('load scroll', function () {
+                var scrolled = $(this).scrollTop();
+                $('#content1').css({
+                    'transform': 'translate3d(0, ' + -(scrolled * 0.2) + 'px, 0)', // parallax (20% scroll rate)
+                    'opacity': 1 - scrolled / 400 // fade out at 400px from top
+                });
+                $('#content2').css('transform', 'translate3d(0, ' + -(scrolled * 0.25) + 'px, 0)'); // parallax (25% scroll rate)
+            });
+        });
+    </script>
+</body>
+</html>

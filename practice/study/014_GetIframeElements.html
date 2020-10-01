@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>014_GetIframeElements</title>
+    
+</head>
+<body>
+  <iframe id="myFrame" src="/default.asp" style="height:380px;width:100%"></iframe>
+
+  <p>Click the "Tryit" button to hide the first H1 element in the iframe (another document).</p>
+  
+  <button onclick="myFunction()">Try it</button>
+  
+  <script>
+  function myFunction() {
+    var iframe = document.getElementById("myFrame");
+    var elmnt = iframe.contentWindow.document.getElementsByTagName("H1")[0];
+    elmnt.style.display = "none";
+  }
+  </script>
+</body>
+</html>

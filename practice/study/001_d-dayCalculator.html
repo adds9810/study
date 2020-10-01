@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001.D-day Calculator</title>
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <style>
+        #wrap{padding:10px;margin:0 auto; max-width:300px;text-align:center;}
+        #wrap h1{margin:20px auto;font-size:20px;}
+        .dDay{text-align:left;}
+        .dDay p{margin:5px 0;font-size:15px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>디데이 계산기</h1>
+        <div class="dDay">
+            <ul>
+                <li><label for="startDay">시작일</label><input type="date" name="startDay" id="startDay"></li>
+                <li><label for="afterDay">몇일후?</label><input type="num" name="afterDay" id="afterDay"></li>
+            </ul>
+            <button type='button' onclick="dDay()" id="check">확인하기</button>
+            <p id="answer">
+                시작일에서 오늘까지 <span class="nowDay"></span>일이 지났습니다.<br>
+                시작일에서 <span class="afterNum"></span>일 후는 <span class="afterDate"></span>입니다.
+            </p>
+        </div>
+    </div>
+    <script>
+        function dDay(){
+            var today = new Date();
+            var startDay = document.querySelector('#startDay').value;
+            var startDate = new Date(startDay);
+            var totoday = today.getTime();
+            var toStart = startDate.getTime();
+            var resultTime = totoday - toStart;
+            var resultdDay = Math.round(resultTime/(1000*60*60*24)); 
+            document.querySelector('.nowDay').innerText = resultdDay;
+
+            var days = document.querySelector('#afterDay').value;
+            var afterDate = toStart + days * (1000*60*60*24);
+            var someday = new Date(afterDate);
+            var year = someday.getFullYear();
+            var month = someday.getMonth() +1;
+            var date = someday.getDate();
+            document.querySelector('.afterNum').innerText = days;
+            document.querySelector('.afterDate').innerText = year + "년 " + month + "월 " + date + "일 ";
+        }
+
+        /*
+            * 날짜/시간 정보를 가져오는 함수
+              - 현재 날짜 정보를 가지는 객체 new date() / 특정 날짜를 가져올 경우 new date('2020-09-07')
+              - get 가져오다, set 설정하다(아래 문구 앞에 붙이면 됨)
+              - FullYear() : 날짜 정보에서 연도 정보를 가져와 네자리 숫자로 표기
+              - Month() : 날짜 정보 중 월 0(1월)~11(12월)
+              - Data() : 날짜 정보 중 일
+              - Day() : 날짜 정보 중 요일 0(월)~6(일)
+              - Time() : 1970. 01. 01. 자정 이후의 시간을 밀리초로 표시 
+              - Hours() : 0 ~ 23시
+              - Minutes() : 0 ~ 59분
+              - Seconds() : 0 ~ 59초
+              - Milliseconds() : 0 ~ 999 밀리초
+
+            * 자바스크립트 시간단위
+              - 1밀리초 = 1/1000초
+              - 1초 = 1000밀리초
+              - 1분 = 60초(60*1000 = 60,000밀리초)
+              - 1시간 = 60분(60*60*1000 = 3,600,000밀리초)
+              - 1일 = 24시간(24*60*60*1000 = 86,400,000밀리초)
+        */
+        
+    </script>
+</body>
+</html>

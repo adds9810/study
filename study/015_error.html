@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>015_error</title>
+    
+</head>
+<body>
+  
+<h1>JavaScript Error Handling</h1>
+
+<p>This example demonstrates how to use <b>catch</b> to diplay an error.</p>
+
+<p id="demo"></p>
+
+<script>
+  try {
+    adddlert("Welcome guest!");
+  }
+  catch(err) {
+    document.getElementById("demo").innerHTML = err.message;
+  }
+  //https://www.w3schools.com/js/js_errors.asp
+</script>
+</body>
+</html>

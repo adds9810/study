@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>016_ajax</title>
+    
+</head>
+<body>
+
+  <div id="demo">
+    <h2>The XMLHttpRequest Object</h2>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+    
+    <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("GET", "ajax_info.txt", true);
+      xhttp.send();
+    }
+    // https://www.w3schools.com/js/tryit.asp?filename=tryjs_ajax_first
+    </script>
+</body>
+</html>

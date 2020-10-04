@@ -13,14 +13,26 @@
     <!--<script src=""></script>-->
 </head>
 <body>
-    <div id="wrap">
-        <h1>jsonList</h1>
-        <p>json으로 값을 넣고 그 값을 list만들어hS보쟈</p>
-        <ul id="list"></ul>  
-    </div>
-    <script>
-        var list = document.createElement('li');
-        //var listItem = list.text
-    </script>
+    
+<p>How to delete properties of an array.</p>
+
+<p id="demo"></p>
+
+<script>
+var myObj, i, x = "";
+myObj = {
+  "name":"John",
+  "age":30,
+  "cars": ["Ford","BMW","Fiat"]
+}
+delete myObj.cars[1];
+
+for (i in myObj.cars) {
+  x += myObj.cars[i] + "<br>";
+}
+document.getElementById("demo").innerHTML = x;
+//https://www.w3schools.com/js/tryit.asp?filename=tryjson_array_delete
+</script>
+
 </body>
 </html>

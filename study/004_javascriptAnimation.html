@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="asset/css/reset.css">
     <title>004. javascript animation</title>
     <style>
+        html,body{transition: all 0.5s ease;}
+        #wrap{height: 1500px;}
         .box{display:block;margin:0 auto;width:100%;max-width:300px;}
         .box h1{margin:20px auto; text-align:center;}
         .exbox{margin-bottom:10px;padding:10px;display:block;width:100%;border:1px solid #000;}
@@ -36,6 +38,12 @@
             </div>
             <div class="exbox" id="play3">
                 <button type="button" class="btn3">requestAnimationFrame()</button>
+                <p></p>
+                <div class="paly">
+                    <span></span>
+                </div>
+            </div><div class="exbox" id="play4">
+                <button type="button" class="btn4">windowTop</button>
                 <p></p>
                 <div class="paly">
                     <span></span>
@@ -95,6 +103,43 @@
         function ex3(){
             //var requestAnimationDrame();
         }
+
+        // 순수 js로 만든 에니메이트
+        // https://yunzema.tistory.com/283
+        // https://yunzema.tistory.com/283
+        var btn3 = document.querySelector('.btn4');
+        btn3.addEventListener('click', ex4);
+        function ex4(){
+            scrollTo(document.documentElement, 0, 1250); 
+        }
+            
+        function scrollTo(element, to, duration) {
+            var start = element.scrollTop,
+                change = to - start,
+                currentTime = 0,
+                increment = 20;
+                
+            var animateScroll = function(){        
+                currentTime += increment;
+                var val = Math.easeInOutQuad(currentTime, start, change, duration);
+                element.scrollTop = val;
+                if(currentTime < duration) {
+                    setTimeout(animateScroll, increment);
+                }
+            };
+            animateScroll();
+        }
+
+        //t = current time
+        //b = start value
+        //c = change in value
+        //d = duration
+        Math.easeInOutQuad = function (t, b, c, d) {
+        t /= d/2;
+            if (t < 1) return c/2*t*t + b;
+            t--;
+            return -c/2 * (t*(t-2) - 1) + b;
+        };
     </script>
 </body>
 </html>

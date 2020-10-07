@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>017_mobileRedirect</title>
+    
+</head>
+<body>
+ <script>
+    var UserAgent = navigator.userAgent; 
+    if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null) { 
+      // location.href = "/mobile/index.html"; 
+      alert('mobile');
+    } else { 
+      alert("Web"); 
+    }
+ </script>
+</body>
+</html>

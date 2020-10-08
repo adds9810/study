@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>018_keyupEvent</title>
+    
+</head>
+<body>
+  <div id="wrap">
+    <div style="height:150vh">
+        <a href="javascript:void(0);" id="scrollBtn">스크롤롤</a>
+    </div>
+    <div class="container" id="quiz">
+        <input type="text" maxlength="2" name="answer" id="answer" placeholder="ㄴㄴ">
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $('#scrollBtn').on('click',function(){
+        $('html,body').animate({scrollTop:100},500);
+      });
+      $('#answer').on('keyup',function(){
+        $('#answer').removeClass('on');
+        $('#nextBtn').remove();
+        if($('#answer').val() == '눈누'){
+            $('#answer').addClass('on');
+            $('#quiz').append('<a href="javascript:void(0);" id="nextBtn">다음으로</a>');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

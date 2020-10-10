@@ -16,8 +16,12 @@
         <input type="text" maxlength="2" name="answer" id="answer" placeholder="ㄴㄴ">
     </div>
   </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
     $(function(){
+      $(window).on('scroll',function(){
+        alert('ddd');
+      });
       $('#scrollBtn').on('click',function(){
         $('html,body').animate({scrollTop:100},500);
       });

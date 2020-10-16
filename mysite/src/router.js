@@ -7,7 +7,6 @@ const routes =[{}]
 
 const router = new VueRouter({
     mode:'history',
-    //base:'/ux/kjh/vue/',
     routes,
     scrollBehavior () {
         return { x: 0, y: 0 }

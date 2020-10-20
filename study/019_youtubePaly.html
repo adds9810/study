@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>019_youtubePaly</title>
+    
+</head>
+<body>
+  <div id="wrap">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/liGwFOQr45Q?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0" allowfullscreen></iframe>
+    <a href="javascript:void(0);" class="stop">stop</a>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(function(){
+      $(".stop").on("click", function(){ $("iframe")[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*'); });
+      //stopVideo, playVideo, pauseVideo 변경가능
+    });
+  </script>
+</body>
+</html>

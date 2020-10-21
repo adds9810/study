@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>020_transition</title>
+    <style>
+      .box{position:relative; margin:100px auto 0; width:200px; height:200px;}
+      .box:after{content:''; display:block; position:absolute; top:50%; left:50%; width:100px; height:100px; background:#00ff00; transform: translate(-50%,-50%); opacity: 1; transition: background 0.5s ease-in-out, opacity 0.2s ease-in-out 0.1s, transform 0.4s ease-in-out;}
+      .box:hover:after{ background:#ff0000; opacity:0.2; transform: translate(-20%,-20%) rotate(360deg)}
+    </style>
+</head>
+<body>
+  <div id="wrap">
+    <h1>필요한 두개 이상의 transition 사용하기</h1>
+    <div class="box">
+
+    </div>
+  </div>
+</body>
+</html>

@@ -3,7 +3,18 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-const routes =[{}]
+const routes =[{
+    {
+        path:'',
+        component: () => import( '@/components/layout.vue'),
+        children: [
+            {
+                name: 'HOME',
+                path: '/',
+                component: () => import('@/view/home.vue'),
+            },
+        ]
+}]
 
 const router = new VueRouter({
     mode:'history',

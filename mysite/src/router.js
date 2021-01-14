@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const routes =[{
-    {
         path:'',
         component: () => import( '@/components/layout.vue'),
         children: [

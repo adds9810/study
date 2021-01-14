@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/reset.css">
+    <title>021_flex</title>
+    <style>
+      /* * flex
+          - ie 10 이상에서 사용가능
+          - display:flex; 으로 지정 후 아래기능 설정가능! 없으면 소용이 없다..
+          - flex-basis : 속성들 중 특정을 지정해 초기 길이 설정
+          - flex-dirextion : flex 안의 속성들의 순서 지정, 역방향, 정방향
+          - flex-flow: 순서와 랩을 여부를 지정할 수 있음
+          - flex-grow: 특정 항목이 flex 안에 있는 다른 요소대비 얼마나 커질지 지정할 수 있음
+          - flex-shrink: 위와 반대로 축소할 수 있음
+          - flex-wrap: 필요시 랩핑가능
+
+      */
+      .container{display:flex; flex-wrap:wrap;width:200px;height:200px;}
+      .container div{-ms-flex: 1;/* ie 10 */ flex:1;}
+      .container div:nth-child(2){flex-basis:100px;}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+      <div class="container">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+      </div>
+  </div>
+</body>
+
+</html>

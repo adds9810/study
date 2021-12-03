@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>024_shareOnSns</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>sns 공유하기</h1>
+      <ul class="snslist">
+        <li class="kakao"><a href="javascript:;">카카오</a></li>
+        <li class="twiter"><a href="javascript:;">트위터</a></li>
+        <li class="facebook"><a href="javascript:;">페이스북</a></li>
+        <li class="copylink"><a href="javascript:;">링크복사</a></li>
+      </ul>
+    </div>
+    <script>
+      const snsWrap = document.querySelector('.snslist');
+      const snsBtn = document.querySelectorAll('.snslist li');
+      const snsNum = snsWrap.childElementCount;
+      const shareUrl = 'https://www.mandupick.com/';
+      function addEvent() {
+        for (let i = 0; i < snsNum; i++) {
+          snsBtn[i].addEventListener('click', shareSns);
+        }
+      }
+      // classList.contains() == .hasClass();
+      function shareSns() {
+        if (this.classList.contains('kakao')) {
+          //카카오
+          // 카카오 사용시 인증 받아서 해야함
+          Kakao.Link.sendCustom({
+            templateId: 66037, // 메시지 템플릿을 사용할 경우
+          });
+        } else if (this.classList.contains('facebook')) {
+          //트위터
+          var openSnsUrl =
+            'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
+          window.open(
+            openSnsUrl,
+            '페이스북 공유하기',
+            'width=555, height=456, scrollbars=no, resizable=no, toolbars=no, menubar=no'
+          );
+        } else if (this.classList.contains('twiter')) {
+          //페이스북
+          var sendText =
+            '수제만둣집🏠 만두동 수제로 11길에서%0a나만을 위한 인생만두를 찾아보세요(경품/할인있음)%0a%0a🥟수제만둣집 입장 🥟%0a'; // 전달할 텍스트
+          window.open(
+            'https://twitter.com/intent/tweet?text=' +
+              sendText +
+              '&url=' +
+              shareUrl,
+            '트위터 공유하기',
+            'width=555, height=456, scrollbars=no, resizable=no, toolbars=no, menubar=no'
+          );
+        } else {
+          copyToClipboard(shareUrl);
+          alert('복사되었습니다.');
+        }
+      }
+
+      // 문구복사
+      function copyToClipboard(val) {
+        const t = document.createElement('textarea');
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+      }
+      addEvent();
+    </script>
+  </body>
+</html>

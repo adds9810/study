@@ -38,9 +38,14 @@
         $('#videoWrap').append(
           '<video width="100%" height="100%" controls autoplay><source src="asset/video/sample.mp4" type="video/mp4">죄송합니다. 귀하의 브라우저는 동영상 재생을 지원하지 않습니다.</video>'
         );
+        // 인스타 내장 브라우저에서는 이렇게 해야 잘됨
+        //$('.videobox video').get(0).play();
       }
       function stopVideo() {
         $('#videoWrap video').remove();
+        // 인스타 내장 브라우저에서는 이렇게 해야 잘됨
+        // $('.videobox video').get(0).pause();
+        // $('.videobox video').get(0).currentTime = 0;
       }
       init();
     </script>

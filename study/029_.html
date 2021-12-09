@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>028_jquerydribbleDrop</title>
+  </head>
+  <body>
+    <div id="wrap">
+      <section class="section content" id="sec2">
+        <div class="container" id="tankSelect">
+          <div class="tankdrog">
+            <p></p>
+            <div
+              class="tank"
+              ondrop="dropFun(event)"
+              ondragover="dragoverFun(event)"
+            ></div>
+            <div draggable="true" id="hope1" ondragstart="dragFun(event)">
+              우리집 마련
+            </div>
+            <div draggable="true" id="hope2" ondragstart="dragFun(event)">
+              아이의 꿈
+            </div>
+            <div draggable="true" id="hope3" ondragstart="dragFun(event)">
+              우리 가족 미래
+            </div>
+            <div draggable="true" id="hope4" ondragstart="dragFun(event)">
+              나의 행복
+            </div>
+            <div draggable="true" id="hope5" ondragstart="dragFun(event)">
+              우리가족 건강
+            </div>
+            <div draggable="true" id="hope6" ondragstart="dragFun(event)">
+              평범한 생활
+            </div>
+            <div draggable="true" id="hope7" ondragstart="dragFun(event)">
+              아이의 웃음
+            </div>
+          </div>
+          <a
+            href="javascript:void(0);"
+            class="arr ani3 btn_ani"
+            id="multipackGo"
+            >제대혈 탱크에 보관하기</a
+          >
+        </div>
+
+        <div class="container" id="tankHope">
+          <ul class="tankbox">
+            <li data-num="0">지켜주고 싶은 것 1</li>
+            <li data-num="1">지켜주고 싶은 것 2</li>
+            <li data-num="2">지켜주고 싶은 것 3</li>
+            <li data-num="3">지켜주고 싶은 것 4</li>
+          </ul>
+          <a href="#challenge2" class="arr ani3 btn_ani moveBtn"
+            >이벤트 참여하기</a
+          >
+        </div>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      var mobile =
+        /iphone|ipad|ipod|android|blackberry|mini|windowssce|palm/i.test(
+          navigator.userAgent.toLowerCase()
+        );
+      if (mobile) {
+        $('[id*="hope"]')
+          .on('touchmove', function (event) {
+            if ($(this).hasClass('nohover')) {
+            } else {
+              $(this).addClass('on');
+              event.preventDefault();
+              var e = event.originalEvent;
+              moveTouchX = e.targetTouches[0].pageX;
+              moveTouchY = e.targetTouches[0].clientY;
+              $(this).css({ top: moveTouchY, left: moveTouchX });
+            }
+          })
+          .on('touchend', function (ev) {
+            // 모바일 디자인 수정하고 좌표 수정 필수!
+            var x = parseInt($(this).css('left'));
+            var y = parseInt($(this).css('top'));
+            var gold = $('.tank');
+            var goldoffset = gold.offset();
+            if (
+              x < goldoffset.left ||
+              x > goldoffset.left + gold.outerWidth()
+            ) {
+              $(this).removeClass('on').css({ top: '', left: '', right: '' });
+            } else {
+              if (y < gold.screenY || y > gold.screenY + gold.outerHeight()) {
+                $(this).removeClass('on').css({ top: '', left: '', right: '' });
+              } else {
+                for (i = 0; i < $('.tankbox li').length; i++) {
+                  var data = $(this).attr('id');
+                  if ($('.tankbox li').eq(i).attr('data-num') == i) {
+                    $('.tankbox li').eq(i).attr('data-num', data);
+                    $('.tankbox li').eq(i).addClass(data);
+                    $('#' + data).remove();
+                    return false;
+                  }
+                  if (i == 2) {
+                    $('[id*=hope]').addClass('nohover');
+                  }
+                }
+              }
+            }
+          });
+      }
+      $('#multipackGo').on('click', multipackGo);
+      function dragFun(ev) {
+        if ($('[id*=hope]').hasClass('nohover')) {
+        } else {
+          ev.dataTransfer.setData('text', ev.target.id);
+        }
+      }
+      function dragoverFun(ev) {
+        ev.preventDefault();
+      }
+      function dropFun(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('text');
+        for (i = 0; i < $('.tankbox li').length; i++) {
+          if ($('.tankbox li').eq(i).attr('data-num') == i) {
+            $('.tankbox li').eq(i).attr('data-num', data);
+            $('.tankbox li').eq(i).addClass(data);
+            $('#' + data).remove();
+            return false;
+          }
+          if (i == 2) {
+            $('[id*=hope]').addClass('nohover');
+          }
+        }
+      }
+      function multipackGo() {
+        if ($('.tankbox li').eq(0).attr('data-num') == 0) {
+          alert('우리아이를 위해 지켜주고 싶은 것을 제대혈 탱크에 보관하세요!');
+        } else {
+          $('#sec2 .container').hide();
+          $('#sec2 .container#tankHope').show();
+          $('html, body').animate({ scrollTop: 0 }, 300);
+        }
+      }
+    </script>
+  </body>
+</html>

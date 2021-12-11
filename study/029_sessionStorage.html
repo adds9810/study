@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>029_sessionStorage</title>
+  </head>
+  <body>
+    <div id="wrap">sessionStorage 공부 겸 사용했던거 정리</div>
+    <p id="confirmTxt"></p>
+    <a href="javascript:;">세션 지우기</a>
+    <script>
+      /*
+        * sessionStorage
+        - 현재 출처의 세션 저장 공간에 접근할 수 있는 Storage 객체.
+        - 값을 저장하면 현재의 탭 창에 대한 각각의 sessionStorage 생성해 저장한다.
+        - localStorage 와는 다르게 휘발성으로 현재 창이나 탭을 닫으면 사라진다.
+
+        * 사용방법
+        - sessionStorage.setItem('항목', '값') - 세션에 접근에 항목지정, 값추가
+        - sessionStorage.getItem('항목') - 지정한 항목의 값 확인
+        - sessionStorage.removeItem('항목') - 지정한 항목의 값 삭제
+        - sessionStorage.clear() - 해당 세션의 모든항목 삭제
+        출처 : https://developer.mozilla.org/ko/docs/Web/API/Window/sessionStorage
+       */
+
+      const getLink = window.location.search;
+      const getUserName = getLink.split('=');
+      const urlCheck = getUserName[1];
+      const confirmTxt = document.getElementById('confirmTxt');
+      const btn = document.getElementsByTagName('a')[0];
+      let confirmSession;
+      let writeTxt;
+      function init() {
+        base();
+        addevent();
+      }
+      function base() {
+        if (urlCheck == 'N') {
+          sessionStorage.setItem('saving', 'N');
+        } else {
+          sessionStorage.setItem('saving', 'Y');
+        }
+        confirmSession = sessionStorage.getItem('saving');
+        if (confirmSession == 'Y') {
+          writeTxt = '현재 저장정보 Y';
+        } else {
+          writeTxt = '현재 저장정보 N';
+        }
+        confirmTxt.innerHTML = writeTxt;
+      }
+      function addevent() {
+        btn.addEventListener('click', removeFun);
+      }
+      function removeFun() {
+        alert('세션을 삭제합니다.');
+        location.href = '029_sessionStorage.html?checkedVar=N';
+        return false;
+      }
+      init();
+    </script>
+  </body>
+</html>

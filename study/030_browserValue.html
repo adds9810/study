@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>030_browserValue</title>
+  </head>
+  <body>
+    <div id="wrap">모바일, 브라우저 구분</div>
+    <script>
+      const isMobile =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
+
+      if (isMobile) {
+        // 모바일 구분
+
+        // 애플 디바이스 구분
+        if (
+          varUA.indexOf('iphone') > -1 ||
+          varUA.indexOf('ipad') > -1 ||
+          varUA.indexOf('ipod') > -1
+        ) {
+          // 아이폰, 아이패드일 경우
+        } else {
+          // 그외 모바일 디바이스
+        }
+      } else {
+        //pc구분
+        if (varUA.indexOf('safari') > -1) {
+          // Chrome or Safari
+          if (varUA.indexOf('opr') > -1) {
+            // opr
+          } else if (varUA.indexOf('chrome') > -1) {
+            // Chrome
+          } else {
+            // Safari
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

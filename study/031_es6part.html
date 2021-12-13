@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>031_es6part</title>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>es6 템플릿 리터럴, 화살표 함수</h1>
+      <br />
+      <p id="txt1"></p>
+    </div>
+    <script>
+        /*
+          템플릿 리터럴
+          - `` 백틱문자 사용
+          - 문자열 인터폴레이션(String Interpolation) 사용 -
+            - ${ … }으로 표현식을 감싸면 + 사용하지 않아도 됨
+            - 문자열 인터폴레이션 내의 표현식은 문자열로 강제 타입 변환된다.
+        */
+
+        const template = `'작은따옴표(single quotes)'과 "큰따옴표(double quotes)"를 혼용할 수 있다.`;
+        document.getElementById('txt1').innerText = `템플릿 리터럴은 ${template}`;
+        console.log(`1 + 1 = ${1 + 1}`);
+
+        /*
+          화살표 함수
+          function(){}을 () => {} 간략하게 사용
+        */
+       // 매개변수 지정 방법
+      () => { ... } // 매개변수가 없을 경우
+       x => { ... } // 매개변수가 한 개인 경우, 소괄호를 생략할 수 있다.
+      (x, y) => { ... } // 매개변수가 여러 개인 경우, 소괄호를 생략할 수 없다.
+
+      // 함수 몸체 지정 방법
+      x => { return x * x }  // single line block
+      x => x * x             // 함수 몸체가 한줄의 구문이라면 중괄호를 생략할 수 있으며 암묵적으로 return된다. 위 표현과 동일하다.
+
+      () => { return { a: 1 }; }
+      () => ({ a: 1 })  // 위 표현과 동일하다. 객체 반환시 소괄호를 사용한다.
+
+      () => {           // multi line block.
+        const x = 10;
+        return x * x;
+      };
+
+      // 참고 https://poiemaweb.com/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>032_cardGame</title>
+    <style>
+      #wrap {
+        margin: 0 auto;
+        width: 1000px;
+      }
+      ul {
+        display: flex;
+      }
+      ul li {
+        width: 50px;
+        height: 100px;
+        background: green;
+        margin: 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>조커찾기 게임</h1>
+      <p class="txt1">남은 횟수 : <span></span></p>
+      <p class="txt2"></p>
+      <br />
+      <ul>
+        <li><a href="javascript:;">1</a></li>
+        <li><a href="javascript:;">2</a></li>
+        <li><a href="javascript:;">3</a></li>
+        <li><a href="javascript:;">4</a></li>
+        <li><a href="javascript:;">5</a></li>
+        <li><a href="javascript:;">6</a></li>
+        <li><a href="javascript:;">7</a></li>
+        <li><a href="javascript:;">8</a></li>
+      </ul>
+    </div>
+    <script>
+      const jokerNum = Math.floor(Math.random() * (7 - 0 + 1)) + 0;
+      const txt1 = document.querySelector('.txt1 span');
+      const txt2 = document.querySelector('.txt2');
+      const card = document.querySelectorAll('ul li');
+      const cardNum = card.length;
+      card[jokerNum].classList.add('joker');
+
+      let rm = 3;
+      let txt;
+
+      txt1.innerHTML = rm;
+
+      for (let i = 0; i < cardNum; i++) {
+        card[i].addEventListener('click', openCard);
+      }
+
+      function openCard() {
+        if (this.classList.contains('joker')) {
+          txt = '조커를 찾았습니다.';
+        } else {
+          rm--;
+          txt1.innerHTML = rm;
+          if (rm <= 0) {
+            txt = `조커를 찾지 못했습니다.\n조커는 ${
+              Number(jokerNum) + 1
+            }번 카드 입니다.`;
+          } else {
+            txt = `다시 시도해 보세요!`;
+          }
+        }
+        txt2.innerHTML = txt;
+        return false;
+
+        /* 
+          클릭이 안되게 하는 방법을 모르겠음 나중에 찾아보자..
+        */
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://jqueryniceselect.hernansartorio.com/css/style.css"
+    />
+    <script src="https://jqueryniceselect.hernansartorio.com/js/jquery.js"></script>
+    <script src="https://jqueryniceselect.hernansartorio.com/js/jquery.nice-select.min.js"></script>
+    <title>035_jsSelectbox</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="wrap">
+      <!--
+        jquery를 이용한 select 스타일 변경 연습
+        https://jqueryniceselect.hernansartorio.com/
+      -->
+      <select>
+        <option data-display="Select">Nothing</option>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
+        <option value="3" disabled>A disabled option</option>
+        <option value="4">Potato</option>
+      </select>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('select').niceSelect();
+      });
+    </script>
+  </body>
+</html>

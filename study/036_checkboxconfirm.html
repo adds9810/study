@@ -16,20 +16,23 @@
       >
     </div>
     <script>
+      /*클릭 한번만 되게 .unbind('click').bind('click') */
       $(function () {
-        $('label').on('click', function () {
-          let saveAgree = $(this).text();
-          let agreeAlert = confirm(saveAgree + ' 저장하시겠습니까?');
-          let thisLabel = $(this).attr('for');
-          if (agreeAlert == true) {
-            if ($('#' + thisLabel).is(':checked')) {
-              $('#' + thisLabel).prop('checked', false);
-            } else {
-              $('#' + thisLabel).prop('checked', true);
+        $('label')
+          .unbind('click')
+          .bind('click', function () {
+            let saveAgree = $(this).text();
+            let agreeAlert = confirm(saveAgree + ' 저장하시겠습니까?');
+            let thisLabel = $(this).attr('for');
+            if (agreeAlert == true) {
+              if ($('#' + thisLabel).is(':checked')) {
+                $('#' + thisLabel).prop('checked', false);
+              } else {
+                $('#' + thisLabel).prop('checked', true);
+              }
             }
-          }
-          return false;
-        });
+            return false;
+          });
       });
     </script>
   </body>

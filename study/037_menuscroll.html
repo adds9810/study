@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>037_menuscroll</title>
+    <style>
+      li {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="scroll">
+        <ul>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        let naviLength = $('.scroll ul li').length;
+        let naviWidth = 0;
+        let allNaviWidth = 0;
+        let naviLo;
+
+        for (let i = 0; i < naviLength; i++) {
+          naviWidth = $('.subnavi ul li').eq(i).outerWidth() + 10;
+          allNaviWidth += naviWidth;
+        }
+        if ($('.scroll').width() < allNaviWidth) {
+          $('.scroll ul').width(allNaviWidth);
+        } else {
+          $('.scroll ul').width('auto');
+        }
+
+        naviLo = $('.scroll ul li a.on').offset().left;
+        if (naviLo > $('.scroll').width()) {
+          $('.scroll').scrollLeft(naviLo);
+        }
+      });
+    </script>
+  </body>
+</html>

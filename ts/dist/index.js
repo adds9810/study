@@ -1,5 +1,6 @@
+"use strict";
 /*
-    ts 세팅과정
+    20211231 ts 세팅과정
     1. scoop 설치 - 파워셀 관리자모드에서 열고
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     $env:SCOOP='C:\sCOOP'
@@ -65,4 +66,18 @@
     npm i -g ts-node
     ts-node hello.ts 파일실행
 
+    20220101 안되서 다른걸로 찾아 설치해봄
+    https://velog.io/@ansrjsdn/TypeScript-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95
+
+    터미널에 설치
+    npm i typescript
+    npm i -D ts-node
+
+    package.json에 추가
+    "dev" : "ts-node src",
+    "build" : "tsc && node dist"
+
 */
+Object.defineProperty(exports, "__esModule", { value: true });
+var maskPerson_1 = require("./utils/maskPerson");
+(0, maskPerson_1.testMakePerson)();

@@ -1,83 +1,30 @@
-/*
-    20211231 ts 세팅과정
-    1. scoop 설치 - 파워셀 관리자모드에서 열고
-    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-    $env:SCOOP='C:\sCOOP'
-    iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-    scoop install aria2
-    scoop install git
-    scoop update * - 그간의 업데이트 사항들이 업데이트 됨
+// 인터페이스
+// interface 인터페이스 이름{
+//     속성이름[?]"속성타입[,...]"
+// }
 
-    2. vscode설치
-    scoop bucket add extras
-    scoop install vscode
-    설치 후 C:\sCOOP\apps\vscode\current에 들어가서 install-context.reg 실행
+// 익명 인터페이스 : 인터페이스의 이름도 없는 인터페이스를 만들 수 있음
 
-    3. node 설치
-    scoop install nodejs-lts
-    node -v node 버전 확인
+// 클래스
+// class 클리스이름{
+//     [private|protected|pubilc] 속성이름[?]: 속성타입[...]
+// }
 
-    4. 크롬설치
-    scoop install chromium
+// 클래스에 인터페이스 구현
 
-    5. 타입스크립트 설치
-    npm i -g typescript
-    tsc -v 버전확인
+// class  클래스이름 implements 인터페이스 이름{}
 
-    6. touch 설치
-    scoop install touch
+// 추상클래스
 
-    7. vscode 실행 후 파일 설치
-    tsc /*
-    ts 세팅과정
-    1. scoop 설치 - 파워셀 관리자모드에서 열고
-    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-    $env:SCOOP='C:\sCOOP'
-    iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-    scoop install aria2
-    scoop install git
-    scoop update * - 그간의 업데이트 사항들이 업데이트 됨
+// abstract class 클래스 이름{
+//     abstract 속성 이름 : 속성타입
+//     abstract 메서드 이름 :(){}
+// }
 
-    2. vscode설치
-    scoop bucket add extras
-    scoop install vscode
-    설치 후 C:\sCOOP\apps\vscode\current에 들어가서 install-context.reg 실행
+// 클래스 상속
+// class 상속클래스 extends 부모클래스{}
 
-    3. node 설치
-    scoop install nodejs-lts
-    node -v node 버전 확인
-
-    4. 크롬설치
-    scoop install chromium
-
-    5. 타입스크립트 설치
-    npm i -g typescript
-    tsc -v 버전확인
-
-    6. touch 설치
-    scoop install touch
-
-    7. tsc 파일생성
-
-    8. node hello.js
-
-    9.ts-node tjfcl
-    npm i -g ts-node
-    ts-node hello.ts 파일실행
-
-    20220101 안되서 다른걸로 찾아 설치해봄
-    https://velog.io/@ansrjsdn/TypeScript-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95
-
-    터미널에 설치
-    npm i typescript
-    npm i -D ts-node
-
-    package.json에 추가
-    "dev" : "ts-node src",
-    "build" : "tsc && node dist"
-
-*/
-
-import { testMakePerson } from './utils/maskPerson';
-
-testMakePerson();
+// static 속성 - class의 정적인 속성
+// class 클래스이름 {
+//     static 정적속성이름 : 속성타입
+// }

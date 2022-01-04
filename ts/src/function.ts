@@ -24,7 +24,7 @@ let result = plus(3, 5);
 */
 
 type test = (string, number) => void;
-let c: test = function (a: string, b: number): void {};
+let c: test = function (a:  , b: number): void {};
 
 /* nudefined - 타입스크립트에서 최하위  */
 
@@ -34,3 +34,8 @@ let c: test = function (a: string, b: number): void {};
      - 함수의 시그니처 다음에는 타입뒤에 물음표를 붙임
         type fn2 = (string,number?) => void
  */
+
+/* 매개변수 기본값 지정
+    (매개변수:타입=매개변수 기본값)
+
+*/

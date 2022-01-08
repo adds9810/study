@@ -7,7 +7,9 @@
     <title>040_class</title>
   </head>
   <body>
-    <div id="wrap"></div>
+    <div id="wrap">
+      <a href="javascript:;">click</a>
+    </div>
     <script>
       /* 
         * class 바닐라js
@@ -31,6 +33,18 @@
          배열.every(조건함수); - 하나라로 조건 불만족시 멈춤
          배열.some(조건함수); - 하나라고 조건 만족시 정지
       */
+      // 클릭이벤트
+      const button = document.getElementsByClassName('a');
+      button.addEventListener('click', fuc);
+      function fuc() {
+        if (this.classList.contains('on')) {
+          this.classList.remove('on');
+          alert('aaaa');
+        } else {
+          this.classList.add('on');
+          alert('dd');
+        }
+      }
     </script>
   </body>
 </html>

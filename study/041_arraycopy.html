@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <title>041_arraycopy</title>
+  </head>
+  <body>
+    <div id="wrap"></div>
+    <script>
+      /* 
+        참조, 깊은복사, 얕은 복사
+        복사 - 어떤 값을 다른 변수에 대입할때 기존값고 참조관계가 끊기는 것
+       */
+      const array = [{ a: 'c' }, { b: 'd' }];
+      const reference = array; // 참조
+      const scopy = [...array]; // 얕은 복사 - 바깥 객체만 복사되고 내부 갯체는 참조 관계가 유지되는 복사 ... 연산자 사용
+      const dcopy = JSON.perse(JSON.stringify(array)); // 깊은복사 - 내부객체까지 복사됨
+      console.log(array === reference); //true
+      console.log(array[0] === reference[0]); //true
+    </script>
+  </body>
+</html>

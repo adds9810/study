@@ -65,7 +65,8 @@
             $('select').append(
               `<option value="${optionLeng}">${optionLeng}</option>`
             );
-            $('select').niceSelect('destroy').niceSelect();
+            //$('select').niceSelect('destroy').niceSelect();
+            $('select').niceSelect('update');
             $('.nice-select .list').niceScroll();
           }
         }, 1000);

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://jqueryniceselect.hernansartorio.com/css/style.css"
+    />
+    <title>042_niceSelectDev</title>
+    <style>
+      .nice-select {
+        border-radius: 0px;
+      }
+
+      .nice-select .list {
+        border-radius: 0px;
+        height: 200px;
+        overflow-y: auto;
+      }
+      .nice-select .option:hover,
+      .nice-select .option.focus,
+      .nice-select .option.selected.focus {
+        color: red;
+        background: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <!--
+        jquery를 이용한 select 스타일 변경 연습
+        https://jqueryniceselect.hernansartorio.com/
+      -->
+      <select>
+        <option value="0">Nothing</option>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
+        <option value="3" disabled>A disabled option</option>
+        <option value="4">Potato</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+    </div>
+    <script src="https://jqueryniceselect.hernansartorio.com/js/jquery.js"></script>
+    <script src="https://jqueryniceselect.hernansartorio.com/js/jquery.nice-select.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Mobile-friendly-Custom-Scrollbar-Plugin-With-jQuery-NiceScroll/js/jquery.nicescroll.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('select').niceSelect();
+        $('.list').niceScroll();
+        const test = setInterval(function () {
+          let optionLeng = $('select option').length + 1;
+          if (optionLeng == 13) {
+            clearInterval(optionLeng);
+          } else {
+            $('select').append(
+              `<option value="${optionLeng}">${optionLeng}</option>`
+            );
+            $('select').niceSelect('destroy').niceSelect();
+            $('.list').niceScroll();
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

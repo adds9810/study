@@ -15,9 +15,13 @@
       }
 
       .nice-select .list {
+        display: none;
         border-radius: 0px;
         height: 200px;
         overflow-y: auto;
+      }
+      .nice-select.open .list {
+        display: block;
       }
       .nice-select .option:hover,
       .nice-select .option.focus,
@@ -52,7 +56,7 @@
     <script>
       $(document).ready(function () {
         $('select').niceSelect();
-        $('.list').niceScroll();
+        $('.nice-select .list').niceScroll();
         const test = setInterval(function () {
           let optionLeng = $('select option').length + 1;
           if (optionLeng == 13) {
@@ -62,7 +66,7 @@
               `<option value="${optionLeng}">${optionLeng}</option>`
             );
             $('select').niceSelect('destroy').niceSelect();
-            $('.list').niceScroll();
+            $('.nice-select .list').niceScroll();
           }
         }, 1000);
       });

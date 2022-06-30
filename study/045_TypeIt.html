@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <script src="https://unpkg.com/typeit@8.6.0/dist/index.umd.js"></script>
+    <style>
+      #myElement {
+        display: block;
+        margin: 30px;
+      }
+    </style>
+    <title>045_TypeIt</title>
+  </head>
+  <body>
+    <div id="wrap">
+      <!-- A root element for TypeIt to target. -->
+      <span id="myElement"></span>
+    </div>
+
+    <!-- The script itself, loaded AFTER your root element. -->
+    <script src="<https://unpkg.com/typeit@8.6.0/dist/index.umd.js>"></script>
+    <script>
+      /* 기본
+        new TypeIt("#myElement", {
+          strings: "This is what will be typed!",
+        }).go();
+      */
+
+      /* 변형가능 */
+      new TypeIt('#myElement')
+        .type('Jack and <strong class="name">Jill</strong> went up the hill')
+        .delete('.name', { to: 'END' })
+        .go();
+    </script>
+  </body>
+</html>

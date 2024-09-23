@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // mission01
+      let animal = "cat";
+      switch (animal) {
+        case "dog":
+          console.log("개");
+          break;
+        case "tiger":
+          console.log("호랑이");
+          break;
+        case "cat":
+          console.log("고양이");
+          break;
+        case "lion":
+          console.log("사자");
+          break;
+        default:
+          console.log("새");
+          break;
+      }
+
+      // mission02
+      let answer = "";
+
+      function connectStrings(str1, str2) {
+        // 코드 작성
+        answer = `${str1} ${str2}`;
+      }
+
+      connectStrings("hello", "javascript");
+
+      console.log(answer); // 출력결과 : hello javascript
+    </script>
+  </body>
+</html>

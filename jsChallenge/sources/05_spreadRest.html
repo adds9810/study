@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // spread ...을 통해 반복적인 중복인 배열과 객체값을 펼쳐줌
+      //
+      const toy = {
+        type: "bear",
+        price: 15000,
+      };
+
+      const blueToy = {
+        ...toy,
+        color: "blue",
+      };
+
+      const yellowToy = {
+        ...toy,
+        color: "yellow",
+      };
+
+      console.log(blueToy);
+      console.log(yellowToy);
+
+      //
+      const color1 = ["red", "orange", "yellow"];
+      const color2 = ["blue", "navy", "purple"];
+
+      const rainbow = [...color1, "green", ...color2];
+
+      // rest 특정 부분들을 하나의 배열이나 객체로 묶는 문법
+      const print = (...rest) => {
+        // rest
+        console.log(rest);
+      };
+
+      const numbers = [1, 2, 3, 4, 5, 6];
+      print(...numbers); // spread
+    </script>
+  </body>
+</html>

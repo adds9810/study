@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // mission01
+      const multiply = (num1, num2) => num1 * num2;
+      console.log(multiply(3, 4));
+
+      // mission02
+      const book = {
+        title: "책책책을 읽읍시다.",
+        author: "ㅇㅅㅇ",
+        getSummary: function () {
+          return `책 제목은 ${this.title}이고 저자는 ${this.author}입니다.`;
+        },
+      };
+
+      console.log(book.getSummary());
+
+      // mission03
+      function sumNumbers(a, b) {
+        function addFive(number) {
+          //코드 작성
+          return number + 5;
+        }
+        //코드 작성
+        return addFive(b) + a;
+      }
+      console.log(sumNumbers(3, 7)); // 출력: 15 (7에 5를 더한 후 3을 더함)
+      console.log(sumNumbers(10, 5)); // 출력: 20 (5에 5를 더한 후 10을 더함)```
+    </script>
+  </body>
+</html>

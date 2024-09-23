@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // mission01
+      const sumAndDouble = (...num) => {
+        let sum = num.reduce((acc, cur) => acc + cur, 0);
+        let arr = num.map((el) => el * 2);
+        return { sum, arr };
+      };
+      console.log(sumAndDouble(1, 2, 3, 4));
+    </script>
+  </body>
+</html>

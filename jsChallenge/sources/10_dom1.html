@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="animal-info">
+      <div class="info-item" id="name">강아지</div>
+      <div class="info-item" id="color">갈색</div>
+      <div class="info-item" id="age">2살</div>
+    </div>
+    <script>
+      // DOM
+      // DOM API를 사용해 특정 요소를 변수에 할당할 때에는 일반적으로 요소를 할당할 변수의 이름 앞에 ‘$’ 기호를 붙여 작성하거나, 변수명의 뒤에 Element를 작성
+
+      // document.getElementById()
+      // 특정 요소를 id 값으로 가져옴
+      let $color = document.getElementById("color");
+      console.log($color);
+
+      // document.querySelector()
+      // id가 아닌, css 선택자로 요소 노드를 반환하는 API, getElementById와 같이 단 하나의 요소만을 반환하는 API
+      let $animalInfo = document.querySelector("div.animal-info");
+      let $age = document.querySelector("div#age");
+
+      console.log($animalInfo);
+      console.log($age);
+
+      // document.querySelectorAll()
+      // class의 이름을 갖고 있는 여러 요소들을 전부 찾아 반환하는 DOM API
+      let $infoItem = document.querySelectorAll("div.info-item");
+      console.log($infoItem);
+
+      // document.getElementsByClassName()
+      // css 선택자가 아닌 class 이름만으로 여러 요소들을 찾는 DOM API
+      let $infoItem2 = document.getElementsByClassName("info-item");
+      console.log($infoItem2);
+
+      // document.getElementsByTagName()
+      // 요소들의 태그 이름을 통해 요소들을 찾을 수 있는 DOM API
+      let $div = document.getElementsByTagName("div");
+      console.log($div);
+
+      // className
+      // class 이름을 변경
+      let $name = document.getElementById("name");
+      $name.className = "dog-name";
+
+      console.log($name);
+      console.log($name.className); // dog-name
+
+      // id
+      // 특정 요소의 뒤에 id를 작성한 다음 해당 값을 수정
+      let $animalInfo2 = document.querySelector("div.animal-info");
+      $animalInfo2.id = "animal";
+
+      console.log($animalInfo2.id);
+
+      // classList
+      // 특정 요소의 클래스 속성에 접근 가능한 프로퍼티, add, contains, item과 같은 여러 가지 메서드를 제공
+      let $color2 = document.getElementById("color");
+
+      console.log($color2.classList);
+
+      let $color3 = document.getElementById("color");
+      // remove class 이름을 제거
+      $color3.classList.remove("info-item");
+      // add className 프로퍼티와는 다르게, 전달한 값으로 class 이름을 변경하지 않고, 전달한 값을 기존 class 이름에 추가하는 메서드
+      $color3.classList.add("dog-color");
+
+      console.log($color3);
+
+      // textContent
+      // 텍스트 노드의 값 조작할 수 있음
+      let $age2 = document.getElementById("age");
+      $age2.textContent = "5살";
+
+      console.log($age2.textContent);
+
+      // style
+      // 스타일을 조작
+      let $color4 = document.getElementById("color");
+      $color4.style.color = "blue";
+      $color4.style.fontSize = "30px";
+
+      console.log($color4);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // promise
+      // 자바스크립트에서 비동기 작업을 좀 더 편리하게 처리할 수 있음
+      const executor = (resolve, reject) => {
+        setTimeout(() => {
+          resolve("성공"); // 성공했을 때 호출
+          reject("실패"); // 실패했을 때 호출
+        }, 3000);
+      };
+
+      const promise = new Promise(executor);
+      // promise.then(
+      //   // 성공했을 때
+      //   (result) => {
+      //     console.log(result);
+      //   },
+      //   // 실패했을 때
+      //   (error) => {
+      //     console.log(error);
+      //   }
+      // );
+      promise
+        // 성공했을 때
+        .then((result) => {
+          console.log(result);
+        })
+        // 실패했을 때
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // 콜백지옥을 해결하기 위해 사용
+      const workA = (value, callback) => {
+        setTimeout(() => {
+          callback(value + 5);
+        }, 5000);
+      };
+      const workB = (value, callback) => {
+        setTimeout(() => {
+          callback(value - 3);
+        }, 3000);
+      };
+      const workC = (value, callback) => {
+        setTimeout(() => {
+          callback(value + 10);
+        }, 10000);
+      };
+
+      // workA(10, (resA) => {
+      //   console.log(`workA : ${resA}`);
+      //   workB(resA, (resB) => {
+      //     console.log(`workB : ${resB}`);
+      //     workC(resB, (resC) => {
+      //       console.log(`workC : ${resC}`);
+      //     });
+      //   });
+      // });
+
+      // 프로미스 객체를 반환해 then 메서드를 연속으로 사용하는 방식을 프로미스 체이닝(Promise Chaining)으로 코드를 직관적이고 간결하게 할 수 있음
+      workA(10)
+        .then((resA) => {
+          console.log(`1. ${resA}`);
+          return workB(resA);
+        })
+        .then((resB) => {
+          console.log(`2. ${resB}`);
+          return workC(resB);
+        })
+        .then((resC) => {
+          console.log(`3. ${resC}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>

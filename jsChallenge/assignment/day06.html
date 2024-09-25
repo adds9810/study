@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // mission01
+      function fakeApiCall() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({ name: "John Doe", age: 30 });
+          }, 2000);
+        });
+      }
+
+      // fetchUserData 함수 완성
+      const fetchUserData = async () => {
+        try {
+          let result = await fakeApiCall();
+          console.log(`사용자 이름: ${result.name}`);
+        } catch {
+          console.log("API 호출 중 오류가 발생했습니다.");
+        }
+      };
+
+      fetchUserData();
+
+      // mission02
+      const API_URL = "https://pokemon-api-ecru-eta.vercel.app";
+
+      const getPokemonData = async () => {
+        try {
+          let response = await fetch(API_URL);
+          let data = await response.json();
+          let arr = data.data;
+          let answer = arr.filter((elm) => elm.color === "green");
+          console.log(answer);
+        } catch (error) {
+          console.log(`error : ${error}`);
+        }
+      };
+
+      getPokemonData();
+    </script>
+  </body>
+</html>

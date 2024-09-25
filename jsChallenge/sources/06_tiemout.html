@@ -7,7 +7,15 @@
   </head>
   <body>
     <script>
-      //
+      const work = (callback) => {
+        setTimeout(() => {
+          console.log("비동기");
+          callback();
+        }, 300);
+      };
+      work(() => {
+        console.log("종료");
+      });
     </script>
   </body>
 </html>

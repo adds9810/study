@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="animal-info">
+      <div class="info-item" id="name">강아지</div>
+      <div class="info-item" id="color">갈색</div>
+      <div class="info-item" id="age">2살</div>
+    </div>
+    <script>
+      // DOM
+
+      // createElement
+      // 사용해 새로운 요소 노드를 생성
+      let $type = document.createElement("div");
+      $type.className = "info-item";
+      $type.id = "type";
+      $type.textContent = "말티즈";
+      // createTextNode
+      // 텍스트 생성시에만 사용 가능
+      let $typeText = document.createTextNode("말티즈");
+
+      console.log($type); // <div class="info-item" id="type">말티즈</div>
+      console.log($typeText); // 말티즈
+
+      // appendChild
+      // 전달받은 노드를 원하는 요소의(부모노드) 마지막 자식으로 추가할 수 있음
+      // let $animalInfo = document.querySelector("div.animal-info");
+      // $animalInfo.appendChild($type);
+      // $type.appendChild($typeText);
+
+      // 실습
+      let $button = document.createElement("button");
+      $button.id = "new-button";
+      $button.classList.add("new-button");
+      $button.textContent = "버튼";
+      // addEventListener
+      // 주로 사용하는 이벤트만 알아두고 필요하면 검색해서 사용
+      $button.addEventListener("click", () => {
+        // window
+        // 현재 사용하는 웹 브라우저의 창을 나타내는 객체로,
+        // 경고창을 띄우는 alert, 확인과 취소 버튼이 있는 confirm과 같은 다양한 메서드를 포함한 자바스크립트의 내장 객체
+        window.alert("클릭");
+      });
+
+      let $animalInfo = document.querySelector("div.animal-info");
+      $animalInfo.appendChild($button);
+      console.log($animalInfo);
+
+      // innerHTML
+      // DOM API 속성 중 하나로, 특정 요소의 HTML을 문자열 형태로 읽거나 설정할 수 있음
+      // 요소의 내부 HTML을 나타내는 문자열을 반환하거나, 설정된 문자열을 요소의 자식으로 해석
+      // 새로운 요소들을 쉽게 설정할 수 있고 변경할 수 있지만, 성능이나 보안에 문제가 있기 때문에 주의해서 사용
+      // 가능하다면 createElement나 textContent와 같은 DOM API를 사용해 개발하는 것이 좋음
+      console.log($animalInfo.innerHTML);
+      // html 추가
+      $animalInfo.innerHTML = '<div id="name">고양이</div>';
+
+      console.log($animalInfo);
+    </script>
+  </body>
+</html>

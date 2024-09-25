@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // this
+      // 함수가 어떻게 호출되었는가에 따라 바인딩되는 값이 달라지는, 값이 동적으로 결정됨
+
+      // * 일반 함수 호출
+      // 웹 브라우저 환경의 전역 객체인 window 객체를 출력
+      // this가 포함된 func 함수를 호출한 객체인 window 객체를 바인딩
+      function func() {
+        console.log(this);
+      }
+
+      func();
+
+      // * 메서드 호출
+      // 메서드 객체 프로퍼티에 저장된 함수
+      // 함수를 메서드로서 호출하면 다음과 같이 메서드를 포함하고 있는 그 객체 자체를 출력
+      const cafe = {
+        brand: "이디야",
+        menu: "아메리카노",
+        print: function () {
+          console.log(this);
+        },
+      };
+
+      cafe.print(); // {brand: '이디야', menu: '아메리카노', print: ƒ}
+
+      // 그러나 메서드를 직접 호출하지 않고, 변수에 메서드를 할당한 다음, 호출하면 window 객체를 바인딩함
+      const myCafe = cafe.print;
+      myCafe(); // window 바인딩
+
+      // * 생성자 함수 호출
+      // 새로운 객체를 생성하는 역할을 하고, new 키워드를 사용해 실행
+      function Cafe(menu) {
+        console.log(this);
+        this.menu = menu;
+      }
+
+      // 이때 this는 생성자 함수가 새로 생성할 새로운 객체, 인스턴스를 가리킴
+      let myCafe2 = new Cafe("latte");
+      console.log(myCafe2);
+
+      // new가 없는 경우
+      let myCafe3 = Cafe("latte");
+      console.log(myCafe); // 전역 객체인 window가 출력이 되었고, myCafe는 undefined가 출력된 것
+
+      // * 콜백 함수
+      const cafe2 = {
+        brand: "이디야",
+        menu: "",
+        setMenu: function (menu) {
+          this.menu = menu;
+        },
+      };
+
+      function getMenu(menu, callback) {
+        // 일반함수로 호출되어 this는 윈도우 객체를 보여줌
+        callback(menu);
+      }
+
+      getMenu("핫초코", cafe2.setMenu);
+
+      console.log(cafe2);
+
+      /* 
+        * 정리
+          1. 일반 함수 호출 -> 전역객체
+          2. 메서드 호출 -> 메서드를 포함하고 있는 객체
+          3. 생성자 함수 호출 -> 생성할 객체
+          4. 콜백 함수 -> 전역객체
+      */
+    </script>
+  </body>
+</html>

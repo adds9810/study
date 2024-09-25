@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- select -->
+    <div>
+      <label for="fruitSelect">과일 선택:</label>
+      <select id="fruitSelect">
+        <option value="apple">사과</option>
+        <option value="banana">바나나</option>
+        <option value="cherry">체리</option>
+        <option value="grape">포도</option>
+      </select>
+    </div>
+    <!-- input -->
+    <div>
+      <label for="userName">이름:</label>
+      <input type="text" id="userName" placeholder="이름을 입력하세요" />
+
+      <label for="password">비밀번호:</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="비밀번호를 입력하세요"
+      />
+
+      <button>로그인</button>
+    </div>
+    <script>
+      // select event 처리
+      const $fruitSelect = document.getElementById("fruitSelect");
+
+      // change 라는 이벤트를 사용
+      // 콜백함수에는 event를 전달받아 event.target.value 를 사용해서 선택된 옵션의 값을 가져올 수 있음
+      $fruitSelect.addEventListener("change", (event) => {
+        let selectedValue = event.target.value;
+        console.log(selectedValue);
+      });
+
+      // remove(option number) 값 삭제
+      $fruitSelect.remove(2);
+
+      // input
+      const $userName = document.getElementById("userName");
+      const $password = document.getElementById("password");
+
+      const $loginBtn = document.querySelector("button");
+
+      $loginBtn.addEventListener("click", () => {
+        // value input의 값 가져옴
+        console.log($userName.value);
+        console.log($password.value);
+      });
+
+      // value input의 값 변경가능
+      $userName.value = "홍길동";
+      // input에 입력되고 있는 값을 출력할 수 있음
+      $password.addEventListener("input", (event) => {
+        console.log(event.target.value);
+      });
+    </script>
+  </body>
+</html>

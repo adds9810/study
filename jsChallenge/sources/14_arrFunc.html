@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // * this와 화살표 함수
+      function Counter() {
+        this.count = 0;
+        // 화살표 함수는 함수가 어디에 선언되었는가에 따라 바인딩 되는 값이 달라짐
+        // this가 전역객체를 가리키는 문제점을 해결하는 데 사용
+        // 그러나 모든 상황에서 해결해주는 것이 아니므로 적절하게 사용
+        setInterval(() => {
+          this.count++;
+          console.log(this.count);
+        }, 2000);
+      }
+
+      const counter = new Counter();
+
+      // 메서드
+      // 이 경우에는 this는 전역 객체를 가리킴
+      // 화살표 함수의 this는 자신을 포함하고 있는 함수가 선언된 위치의 상위 스코프를 참조하기 때문에, print 메서드가 선언된 위치인 cafe 객체의 상위 스코프인 전역 객체가 출력
+      const cafe = {
+        brand: "이디야",
+        menu: "아메리카노",
+        print: () => {
+          console.log(this);
+        },
+      };
+
+      cafe.print();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // https://jsonplaceholder.typicode.com/users의 데이터 사용
+      // json
+      // JSON(Javascript Object Notation)은 자바스크립트 객체 표기법이라는 뜻으로, 자바스크립트에서 데이터를 문자열 형태로 나타내기 위해 사용
+      // JSON은 보통 웹 애플리케이션에서 데이터를 전송할 때 사용되며, 이렇게 key와 value 쌍으로 이루어져 있음
+
+      //fetch : API를 호출 내장 함수
+      // let response = fetch(
+      //   "https://jsonplaceholder.typicode.com/usersa,https://jsonplaceholder.typicode.com/users"
+      // )
+      //   .then((res) => console.log(res))
+      //   .catch((err) => console.log(err));
+      // console.log(response);
+
+      // async와 await을 사용 가독성이 좋아짐
+      const getData = async () => {
+        try {
+          let response = fetch(
+            "https://jsonplaceholder.typicode.com/usersa,https://jsonplaceholder.typicode.com/users"
+          );
+          // json() JSON 형식의 데이터를 자바스크립트가 활용할 수 있는 어떠한 객체의 형태로 변환하기 위해 사용하는 메서드
+          let data = response.json();
+          console.log(data);
+        } catch {
+          console.log(err);
+        }
+      };
+      getData();
+
+      // API 에러 핸들링
+      // API 호출은 필요한 데이터를 전달 받기 위해 데이터를 요청하는 작업으로 데이터를 요청할 때에는 네트워크 오류 혹은 인터넷 속도 등의 다양한 이유로, 데이터 요청에 실패할 수 있다는 점을 주의해야 함
+      // try와 catch문을 사용한 에러 처리
+    </script>
+  </body>
+</html>

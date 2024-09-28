@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      * 모듈 사용방법 
+      - type="module" 추가 후 파일 확장자를 .js 에서 .mjs로 변경하는 것이 일반적
+      - 15_moduleIndex.mjs에서 15_moduleTest.mjs 파일을 가져오므로 하나만 연겨하면 됨
+    -->
+    <script type="module" src="src/15_moduleIndex.mjs"></script>
+    <!-- <script type="module" src="src/15_moduleTest.mjs"></script> -->
+    <script>
+      // 컴포넌트와 모듈
+      // 컴포넌트 - 웹 애플리케이션의 구성 요소로, 웹 애플리케이션을 기능별로 나눈 독립적인 부분, 독립적인 요소로 구분되기 때문에 나중에 웹 페이지를 쉽고 편리하게 유지보수 할 수 있음
+      // 모듈 - 코드를 쉽게 관리할 수 있도록 중복되는 기능들을 작은 단위로 나눠, 쉽게 재사용할 수 있도록 하는 방법
+
+      // 자바스크립트에서 모듈 내부의 식별자들은 각각 자신만의 스코프를 갖기 때문에 기본적으로 다른 파일에서 사용할 수 없는 상태
+      // 일반적인 자바스크립트 파일에 변수나 함수를 선언하면, 다른 파일에 있는 식별자들에 접근이 가능하기 때문에 동일한 이름의 식별자를 중복 선언할 경우 다음과 같이 오류가 발생
+    </script>
+  </body>
+</html>

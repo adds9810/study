@@ -1,0 +1,9 @@
+// mission01
+export default function App($app) {
+  this.state = {
+    pokemonType: "",
+    pokemonList: [],
+    searchWord: "",
+    currentPage: "",
+  };
+}

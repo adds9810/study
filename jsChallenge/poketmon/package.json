@@ -1,0 +1,15 @@
+{
+  "name": "poketmon",
+  "version": "1.0.0",
+  "description": "지금까지 배운 내용을 사용해서 PokemonList 컴포넌트를 완성하세요.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

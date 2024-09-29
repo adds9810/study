@@ -1,4 +1,5 @@
 //COMPONENTS
+import Header from "./components/Header.js";
 import PokemonList from "./components/PokemonList.js";
 
 //APIS
@@ -18,6 +19,41 @@ export default function App($app) {
     searchWord: getSearchWord(),
     currentPage: window.location.pathname,
   };
+
+  const header = new Header({
+    //코드 작성
+    $app,
+    initialState: {
+      currentPage: this.state.currentPage,
+      searchWord: this.state.searchWord,
+    },
+    //'포켓몬 도감'을 클릭하면 "/" 홈으로 돌아갈 수 있도록 함수를 완성하세요.
+    handleClick: async () => {
+      history.pushState(null, null, `/`);
+      const pokemonList = await getPokemonList();
+      this.setState({
+        ...this.state,
+        pokemonList: pokemonList,
+        type: "",
+        searchWord: getSearchWord(),
+        currentPage: "/",
+      });
+    },
+    //'돋보기 모양'을 누르면 검색 결과를 나타내고, "(기존 url)/?search=searchWord"로 url을 변경하세요.
+    handleSearch: async (searchWord) => {
+      history.pushState(null, null, `?search=${searchWord}`);
+      const searchedPokemonList = await getPokemonList(
+        this.state.type,
+        searchWord
+      );
+      this.setState({
+        ...this.state,
+        searchWord: searchWord,
+        pokemonList: searchedPokemonList,
+        currentPage: `?search=${searchWord}`,
+      });
+    },
+  });
 
   const pokemonList = new PokemonList({
     $app,
